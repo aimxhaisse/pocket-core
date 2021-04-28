@@ -5,6 +5,7 @@ import (
 	sdk "github.com/pokt-network/pocket-core/types"
 	govTypes "github.com/pokt-network/pocket-core/x/gov/types"
 	"github.com/pokt-network/pocket-core/x/nodes/types"
+	"github.com/pokt-network/pocket-core/store"
 )
 
 // RewardForRelays - Award coins to an address (will be called at the beginning of the next block)
@@ -64,6 +65,9 @@ func (k Keeper) mint(ctx sdk.Ctx, amount sdk.BigInt, address sdk.Address) sdk.Re
 		return sendErr.Result()
 	}
 	logString := fmt.Sprintf("a reward of %s was minted to %s", amount.String(), address.String())
+
+	store.InsertTimelineEvent(address.String(), ctx.BlockHeight(), amount.Int64())
+
 	k.Logger(ctx).Info(logString)
 	return sdk.Result{
 		Log: logString,

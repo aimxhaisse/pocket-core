@@ -9,6 +9,7 @@ require (
 	github.com/hashicorp/golang-lru v0.5.4
 	github.com/jordanorelli/lexnum v0.0.0-20141216151731-460eeb125754
 	github.com/julienschmidt/httprouter v1.3.0
+	github.com/mattn/go-sqlite3 v2.0.3+incompatible
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.5.1
 	github.com/regen-network/cosmos-proto v0.3.0
