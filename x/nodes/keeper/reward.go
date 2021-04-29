@@ -66,7 +66,7 @@ func (k Keeper) mint(ctx sdk.Ctx, amount sdk.BigInt, address sdk.Address) sdk.Re
 	}
 	logString := fmt.Sprintf("a reward of %s was minted to %s", amount.String(), address.String())
 
-	store.InsertTimelineEvent(address.String(), ctx.BlockHeight(), amount.Int64())
+	store.InsertTimelineEvent(address.String(), ctx.BlockHeight(), amount.Int64(), store.TxMint)
 
 	k.Logger(ctx).Info(logString)
 	return sdk.Result{
