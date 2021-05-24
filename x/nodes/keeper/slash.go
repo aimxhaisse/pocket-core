@@ -2,7 +2,6 @@ package keeper
 
 import (
 	"fmt"
-	"github.com/pokt-network/pocket-core/store"
 	"time"
 
 	"github.com/pokt-network/pocket-core/x/nodes/exported"
@@ -48,7 +47,6 @@ func (k Keeper) simpleSlash(ctx sdk.Ctx, addr sdk.Address, amount sdk.BigInt) {
 		}
 	}
 
-	store.InsertTimelineEvent(validator.GetAddress().String(), ctx.BlockHeight(), -amount.Int64(), store.TxSimpleSlash)
 	// Log that a slash occurred
 	ctx.Logger().Info(fmt.Sprintf("validator %s simple slashed; burned %s tokens",
 		validator.GetAddress(), amount.String()))
@@ -112,7 +110,6 @@ func (k Keeper) slash(ctx sdk.Ctx, addr sdk.Address, infractionHeight, power int
 		}
 	}
 
-	store.InsertTimelineEvent(validator.GetAddress().String(), ctx.BlockHeight(), -tokensToBurn.Int64(), store.TxSlash)
 	// Log that a slash occurred
 	logger.Info(fmt.Sprintf("validator %s slashed by slash factor of %s; burned %v tokens",
 		validator.GetAddress(), slashFactor.String(), tokensToBurn))
