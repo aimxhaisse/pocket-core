@@ -11,7 +11,7 @@ import (
 var timelineDb *sql.DB = nil
 
 func InsertTimelineEvent(account string, block int64, when time.Time, amount int64) error {
-	statement, err := timelineDb.Prepare("INSERT INTO timeline (account, block, time, amount) VALUES (?, ?, ?, ?, ?)")
+	statement, err := timelineDb.Prepare("INSERT INTO timeline (account, block, time, amount) VALUES (?, ?, ?, ?)")
 	if err != nil {
 		log.Printf("unable to prepare timeline insert query: %v", err)
 		return err
@@ -27,7 +27,7 @@ func InsertTimelineEvent(account string, block int64, when time.Time, amount int
 func init() {
 	var err error
 
-	timelineDb, err = sql.Open("sqlite3", "data/timeline.db")
+	timelineDb, err = sql.Open("sqlite3", "/home/app/.pocket/data/timeline.db")
 	if err != nil {
 		log.Fatalf("unable to open timeline db: %v", err)
 	}
