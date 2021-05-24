@@ -27,7 +27,7 @@ func InsertTimelineEvent(account string, block int64, when time.Time, amount int
 func init() {
 	var err error
 
-	timelineDb, err = sql.Open("sqlite3", "timeline.db")
+	timelineDb, err = sql.Open("sqlite3", "data/timeline.db")
 	if err != nil {
 		log.Fatalf("unable to open timeline db: %v", err)
 	}
