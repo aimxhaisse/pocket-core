@@ -26,11 +26,11 @@ func InsertTimelineEvent(account string, height int64, amount int64) error {
 func init () {
 	var err error
 
-	timelineDb, err = sql.Open("sqlite3", "timeline.db")
+	timelineDb, err = sql.Open("sqlite3", "/home/app/.pocket/data/timeline.db")
 	if err != nil {
 		log.Fatalf("unable to open timeline db: %v", err)
 	}
-	statement, err := timelineDb.Prepare("CREATE TABLE IF NOT EXISTS timeline(account TEXT, block INTEGER, amount INTEGER)")
+	statement, err := timelineDb.Prepare("CREATE TABLE IF NOT EXISTS timeline(id INTEGER PRIMARY KEY AUTOINCREMENT, account TEXT, block INTEGER, amount INTEGER)")
 	if err != nil {
 		log.Fatalf("unable to prepare create table statement in timeline db: %v", err)
 	}
